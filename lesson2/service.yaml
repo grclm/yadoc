@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service # you can name this whatever you want
+  namespace: hpa-test
+  labels:
+    app: myapp
+spec:
+  selector:
+    app: myapp # this should match the label of your deployment pod
+  ports:
+    - protocol: TCP 
+      port: 80 # this is the port that will be used by the ingress controller 
+      targetPort: 5000 # this should match the container port of your deployment pod

@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress 
+metadata:
+  name: myapp-ingress # you can name this whatever you want 
+  namespace: hpa-test
+spec:
+  rules:
+    - host: myapp.local # this is the hostname for your ingress 
+      http:
+        paths:
+          - pathType : Prefix # added pathType
+            path : / # this means any path starting with / will be routed to your service 
+            backend :
+              service : # added service field
+                name : myapp-service # this should match the name of your service 
+                port : 
+                  number : 80 # this should match the port of your service 
